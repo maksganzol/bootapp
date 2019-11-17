@@ -27,12 +27,13 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
-    public User getUserById(Long id){
-        return userRepository.findById(id).get();
+    public User getUserByLogin(String login){
+        return userRepository.findByLogin(login);
     }
 
     public void saveUser(User user){
         userRepository.save(user);
+        System.out.println(user);
     }
 
     public void deleteUser(User user){
