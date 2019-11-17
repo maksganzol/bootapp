@@ -63,7 +63,7 @@ public class StudyService {
 
             String uuidFile = UUID.randomUUID().toString();
             String resName = uuidFile + file.getOriginalFilename();
-            file.transferTo(new File(uploadPath+resName));
+            file.transferTo(new File(uploadPath+"/"+resName));
             portion.setFilename(resName);
         }
 

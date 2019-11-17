@@ -46,6 +46,7 @@ public class MaterialController {
         model.addAttribute("portions", studyService.getAllPortions());
         return "material";
     }
+
     @GetMapping("{id}")
     public String delete(@PathVariable("id") Portion portion){
         studyService.delete(portion);
