@@ -55,7 +55,8 @@ public class StudyService {
         Topic topic = new Topic(title);
         Portion portion = new Portion(content);
         portion.setTopic(topic);
-        if(file!=null){
+
+        /*if(file!=null){
             File uploadDir = new File(uploadPath);
             if(!uploadDir.exists()) {
                 uploadDir.mkdir();
@@ -65,7 +66,7 @@ public class StudyService {
             String resName = uuidFile + file.getOriginalFilename();
             file.transferTo(new File(uploadPath+"/"+resName));
             portion.setFilename(resName);
-        }
+        }*/
 
         return portion;
     }
