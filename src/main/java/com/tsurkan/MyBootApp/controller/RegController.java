@@ -2,8 +2,7 @@ package com.tsurkan.MyBootApp.controller;
 
 import com.tsurkan.MyBootApp.domain.Role;
 import com.tsurkan.MyBootApp.domain.User;
-import com.tsurkan.MyBootApp.repo.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tsurkan.MyBootApp.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +13,11 @@ import java.util.Collections;
 @Controller
 public class RegController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
+
+    public RegController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(value = "registration")
     public String registration(){
@@ -24,14 +26,14 @@ public class RegController {
 
     @PostMapping(value = "registration")
     public String regUser(User user, Model model){
-        User us = userRepository.findByLogin(user.getLogin());
+        User us = (User) userService.loadUserByUsername(user.getLogin());
         if(us!=null){
             model.addAttribute("message", "User already exists");
             return "registration";
         }
         user.setRoles(Collections.singleton(Role.STUDENT));
         user.setActive(true);
-        userRepository.save(user);
+        userService.saveUser(user);
         return "redirect:/login";
 
     }

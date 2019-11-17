@@ -1,0 +1,10 @@
+create table hibernate_sequence (next_val bigint) engine=MyISAM;
+insert into hibernate_sequence values ( 1 );
+insert into hibernate_sequence values ( 1 );
+insert into hibernate_sequence values ( 1 );
+create table portion (id bigint not null, content varchar(2048), filename varchar(255), topic_id bigint, primary key (id)) engine=MyISAM;
+create table topic (id bigint not null, title varchar(255), primary key (id)) engine=MyISAM;
+create table user (id bigint not null, active bit not null, last_name varchar(255), username varchar(255), name varchar(255), password varchar(255), primary key (id)) engine=MyISAM;
+create table user_role (user_id bigint not null, roles varchar(255)) engine=MyISAM;
+alter table portion add constraint portion_topic_fk foreign key (topic_id) references topic (id);
+alter table user_role add constraint user_role_user_fk foreign key (user_id) references user (id);

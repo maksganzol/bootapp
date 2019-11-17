@@ -5,11 +5,11 @@ import com.tsurkan.MyBootApp.domain.study.Topic;
 import com.tsurkan.MyBootApp.repo.StudyRerository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 @Service
 public class StudyService {
@@ -48,5 +48,25 @@ public class StudyService {
 
     public void delete(Portion portion){
         studyRerository.deleteById(portion.getId());
+    }
+
+    public Portion createPortion(String content, String title, MultipartFile file, String uploadPath) throws IOException {
+
+        Topic topic = new Topic(title);
+        Portion portion = new Portion(content);
+        portion.setTopic(topic);
+        if(file!=null){
+            File uploadDir = new File(uploadPath);
+            if(!uploadDir.exists()) {
+                uploadDir.mkdir();
+            }
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resName = uuidFile + file.getOriginalFilename();
+            file.transferTo(new File(uploadPath+resName));
+            portion.setFilename(resName);
+        }
+
+        return portion;
     }
 }

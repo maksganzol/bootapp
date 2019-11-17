@@ -5,6 +5,7 @@ import com.tsurkan.MyBootApp.domain.study.Topic;
 import com.tsurkan.MyBootApp.helper.AuthenticationHelper;
 import com.tsurkan.MyBootApp.service.StudyService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/material")
+@PreAuthorize("hasAuthority('TEACHER')")
 public class MaterialController {
 
     @Value("${upload.path}")
@@ -38,24 +40,9 @@ public class MaterialController {
                               @RequestParam String title,
                               @RequestParam("file") MultipartFile file,
                               Model model) throws IOException {
-        model.addAttribute("auth", AuthenticationHelper.getAuthInString());
-
-        Topic topic = new Topic(title);
-        Portion portion = new Portion(content);
-        if(file!=null){
-            File uploadDir = new File(uploadPath);
-            if(!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resName = uuidFile + file.getOriginalFilename();
-            file.transferTo(new File(uploadPath+resName));
-            portion.setFilename(resName);
-        }
-
-        portion.setTopic(topic);
+        Portion portion = studyService.createPortion(content, title, file, uploadPath);
         studyService.add(portion);
+        model.addAttribute("auth", AuthenticationHelper.getAuthInString());
         model.addAttribute("portions", studyService.getAllPortions());
         return "material";
     }
