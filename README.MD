@@ -2,6 +2,8 @@ bootapp
 
 Application with Spring Boot
 
+deploy on https://booteducation.herokuapp.com/ login: root, password: root
+
 Это приложение представляет собой учебный сервис для студентов и препоавателей.
 
 При регистрации вы сразу получаете роль студента.
