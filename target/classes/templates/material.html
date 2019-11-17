@@ -55,11 +55,15 @@
             </a>
             <div class="collapse" id="collapseExample">
                 <div class="form-group mt-3">
-                    <form method="post" th:action="@{/material}">
+                    <form method="post" th:action="@{/material}" enctype="multipart/form-data">
                         <div class="form-group">
                             <p><b>Title:</b><br>
                                 <input type="text" size="40" name="title">
                             </p>
+                        </div>
+                        <div class="form-group">
+                            <p>Image (optional)<br>
+                                <input type="file" name="file">
                         </div>
                         <div class="form-group">
                             <p>Material<br>
@@ -67,6 +71,7 @@
                             <p><input type="submit" value="Отправить">
                                 <input type="reset" value="Очистить"></p>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -77,11 +82,13 @@
                 <tr>
                     <th>Topic</th>
                     <th>Content</th>
+                    <th>Image</th>
                 </tr>
                 <tr th:each = "port: ${portions}">
                     <td th:text="${port.topic.title}">...</td>
                     <td th:text="${port.content}">...</td>
-                    <td><a th:href = "@{'/material/' + ${port.id}}">Delete</a></td>
+                    <td th:if="port.filename"><img th:src="@{'/img/' + ${port.filename}}"></td>
+                    <td><a th:href="@{'/material/' + ${port.id}}">Delete</a></td>
                 </tr>
             </table>
         </div>

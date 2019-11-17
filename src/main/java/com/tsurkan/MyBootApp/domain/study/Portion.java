@@ -3,8 +3,6 @@ package com.tsurkan.MyBootApp.domain.study;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.Collections;
 
 @Entity
 public class Portion {
@@ -17,6 +15,15 @@ public class Portion {
     @JsonIgnore
     @JoinColumn (name="topic_id")
     private Topic topic;
+    private String filename;
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 
     public Topic getTopic() {
         return topic;

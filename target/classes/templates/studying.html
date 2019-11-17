@@ -61,9 +61,11 @@
                 </li>
             </ul>
         </div>
-        <div id="content" class="col-md-7 border"></div>
+        <div id="content" class="col-md-5 border"></div>
+        <div class="col-md-5"><img id="image" class="image" src=""></div>
     </div>
     <input th:type="hidden" th:each="portion, stat : ${portions}" th:value="${portion.content}" th:id="${stat.index}">
+    <input th:type="hidden" th:each="portion, stat : ${portions}" th:value="${portion.filename}" th:id="'img' + ${stat.index}">
 </div>
 <script th:inline="javascript">
     var counter = 0;
@@ -72,6 +74,10 @@
             var content = document.getElementById(counter.toString()).getAttribute("value");
             if (content != null) {
                 document.querySelector("#content").innerHTML = content;
+            }
+            var filename = document.getElementById("img"+counter.toString()).getAttribute("value");
+            if (filename != null) {
+                document.querySelector("#image").setAttribute("src", "/img/" + filename)
             }
             counter++;
         }
