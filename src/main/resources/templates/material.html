@@ -90,7 +90,7 @@
                 <tr th:each = "port: ${portions}">
                     <td th:text="${port.topic.title}">...</td>
                     <td th:text="${port.content}">...</td>
-                    <td th:if="port.filename"><img th:src="@{'/img/' + ${port.filename}}"></td>
+                    <td th:if="port.filename"><img th:src="@{'/src/img/' + ${port.filename}}"></td>
                     <td><a th:href="@{'/material/' + ${port.id}}">Delete</a></td>
                 </tr>
             </table>

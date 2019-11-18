@@ -8,6 +8,10 @@
       </list>
     </option>
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/src/img/3d6b913a-e118-49fb-9240-9f656274222fbol.svg" />
+    <file url="file://$PROJECT_DIR$/src/img/49e8ad8e-2bcc-40da-b0d0-7fd70756a52dbol.svg" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
