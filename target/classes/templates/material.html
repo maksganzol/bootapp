@@ -57,11 +57,11 @@
                 Add portion
             </a>
             <div class="collapse" id="collapseExample">
-                <div class="form-group mt-3">
+                <div class="form-group mt-4">
                     <form method="post" th:action="@{/material}" enctype="multipart/form-data">
                         <div class="form-group">
                             <p><b>Title:</b><br>
-                                <input type="text" size="40" name="title">
+                                <input type="text"  name="title">
                             </p>
                         </div>
                         <div class="form-group">
@@ -70,7 +70,7 @@
                         </div>
                         <div class="form-group">
                             <p>Material<br>
-                                <textarea name="content" cols="40" rows="5"></textarea></p>
+                                <textarea name="content" rows="5"></textarea></p>
                             <p><input type="submit" value="Отправить">
                                 <input type="reset" value="Очистить"></p>
                         </div>
