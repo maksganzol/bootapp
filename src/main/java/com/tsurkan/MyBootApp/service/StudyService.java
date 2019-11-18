@@ -56,17 +56,18 @@ public class StudyService {
         Portion portion = new Portion(content);
         portion.setTopic(topic);
 
-        /*if(file!=null){
+        if(file!=null){
             File uploadDir = new File(uploadPath);
             if(!uploadDir.exists()) {
                 uploadDir.mkdir();
+                System.out.println(uploadPath);
             }
 
             String uuidFile = UUID.randomUUID().toString();
             String resName = uuidFile + file.getOriginalFilename();
-            file.transferTo(new File(uploadPath+"/"+resName));
+            file.transferTo(new File(uploadPath));
             portion.setFilename(resName);
-        }*/
+        }
 
         return portion;
     }
