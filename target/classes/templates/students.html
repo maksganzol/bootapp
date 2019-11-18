@@ -33,10 +33,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/profile">My profile</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/rules">Rules</a>
-            </li>
-            <li class="nav-item active">
+            <li th:if = "${auth.contains('TEACHER')}" class="nav-item active">
                 <a class="nav-link" href="/material">Study material</a>
             </li>
             <li class="nav-item active">
