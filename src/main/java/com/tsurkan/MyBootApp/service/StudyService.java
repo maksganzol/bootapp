@@ -59,13 +59,13 @@ public class StudyService {
         if(file!=null){
             File uploadDir = new File(uploadPath);
             if(!uploadDir.exists()) {
-                uploadDir.mkdir();
+                System.out.println(uploadDir.mkdirs());
                 System.out.println(uploadPath);
             }
 
             String uuidFile = UUID.randomUUID().toString();
             String resName = uuidFile + file.getOriginalFilename();
-            file.transferTo(new File(uploadPath));
+            file.transferTo(new File(uploadPath+"/"+resName));
             portion.setFilename(resName);
         }
 
